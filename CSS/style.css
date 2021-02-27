@@ -1,0 +1,149 @@
+:root{
+    --background: rgba(224, 2, 1, .85);
+}
+body{
+    margin: 0;
+}
+/* Nav Bar Mobile */
+header{
+    background: var(--background);
+    text-align: center;
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+}
+h1 a{
+    text-align: center;
+    z-index: 999;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    font-family: Arial;
+}
+h1 a:hover{
+    color: #000;
+}
+nav{
+    position: absolute;
+    text-align: left;
+    top: 100%;
+    left: 0;
+    background: var(--background);
+    width: 100%;
+    transform: scale(1, 0);
+    transform-origin: top;
+    transition: transform 400ms ease-in-out;
+}
+nav ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+nav li{
+    margin-bottom: 1em;
+    margin-left: 1em;
+}
+nav a{
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 150ms ease-in-out;
+}
+nav a:hover{
+    color: #000;
+}
+.nav-toggle:checked ~ nav{
+    transform: scale(1, 1);
+}
+.nav-toggle:checked ~ nav a{
+    opacity: 1;
+    transition: opacity 250ms ease-in-out 250ms;
+}
+.nav-toggle{
+    display: none;
+}
+.nav-toggle-label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 1em;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.nav-toggle-label span,
+.nav-toggle-label::before,
+.nav-toggle-label::after{
+    display: block;
+    background: white;
+    height: 2px;
+    width: 2em;
+    border-radius: 2px;
+    position: relative;
+}
+.nav-toggle-label::before,
+.nav-toggle-label::after{
+    content: '';
+    position: absolute;
+}
+.nav-toggle-label::before{
+    bottom: 7px;
+}
+.nav-toggle-label::after{
+    top: 7px;
+}
+
+/* Nav Bar PC*/
+@media screen and (min-width: 800px){
+    .nav-toggle-label{
+        display: none;
+    }
+    header{
+        display: grid;
+        grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
+
+    }
+    h1 a{
+        grid-column: 2 / 3;
+    }
+    nav{
+        all: unset;
+        grid-column: 3 / 4;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    nav a{
+        opacity: 1;
+        position: relative;
+    }
+    nav ul{
+        display: flex;
+    }
+    nav li{
+        margin-left: 3em;
+        margin-bottom: 0;
+    }
+    nav a::before{
+        content: '';
+        display: block;
+        height: 2px;
+        background: black;
+        position: absolute;
+        bottom: -.75em;
+        left: 0;
+        right: 0;
+        transform: scale(0, 1);
+        transform-origin: center;
+        transition: transform ease-in-out 250ms;
+    }
+    nav a:hover::before{
+        transform: scale(1, 1);
+    }
+}
